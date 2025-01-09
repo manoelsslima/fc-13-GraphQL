@@ -14,7 +14,7 @@ import (
 )
 ```
 
-Download dependencies of `tools.go` file:
+Init the program, creating a new schema from `tools.go` file:
 ```
 $ go run github.com/99designs/gqlgen init
 ```
@@ -23,6 +23,15 @@ Start server:
 ```
 $ go run server.go
 ```
+
+## To change the app
+create a new schema.graphqls (or replace the content). Then, run the command:
+```
+$ go run github.com/99designs/gqlgen generate
+
+```
+It will generate a new app based on informations of schema.graphsls
+
 
 ## Troubleshooting
 #### In case of error:
