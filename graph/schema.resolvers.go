@@ -8,7 +8,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/manoelsslima/fc-13-GraphQL/graph/model"
+	"github.com/devfullcycle/13-GraphQL/graph/model"
 )
 
 // CreateCategory is the resolver for the createCategory field.
