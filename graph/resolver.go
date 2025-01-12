@@ -4,4 +4,9 @@ package graph
 //
 // It serves as dependency injection for your app, add any dependencies you require here.
 
-type Resolver struct{}
+import "github.com/manoelsslima/fc-13-GraphQL/internal/database"
+
+type Resolver struct{
+	// injects database dependency
+	CategoryDB *database.Category // now, adjust schema.resolves.go to access this
+}
