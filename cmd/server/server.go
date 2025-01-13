@@ -11,20 +11,33 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler/transport"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/devfullcycle/13-GraphQL/graph"
-	"github.com/devfullcycle/13-GraphQL/graph/generated"
 	"github.com/vektah/gqlparser/v2/ast"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 const defaultPort = "8080"
 
 func main() {
+// opens database connection
+	db, err := sql.Open("sqlite3", "./data.db")
+	if err != nil {
+		log.Fatalf("failed to open database: %v", err)
+	}
+	defer db.Close()
+// opens database connection
+
+// insert data
+	categoryDB := databaseNewCategory(db)
 
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
 	}
 
-	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
+		// injects categoryDB
+		CategoryDB: categoryDB,
+	}}))
 
 	srv.AddTransport(transport.Options{})
 	srv.AddTransport(transport.GET{})

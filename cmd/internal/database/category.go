@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"github.com/google/uuid"
+//	"github.com/devfullcycle/13-GraphQL/internal/database"
 )
 
 type Category struct {
